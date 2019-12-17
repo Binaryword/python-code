@@ -8,6 +8,7 @@ token_word = word_tokenize(sample_word)
 stopWord = set(stopwords.words("english"))
 print(token_word)
 
+# list comperssion 
 processedWord = [st for st in token_word if st not in stopWord]
 print(processedWord)
 
