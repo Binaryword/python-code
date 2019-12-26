@@ -1,18 +1,22 @@
 from pattern.en import singularize
+import enchant
 
 ## creating singular and plural method
 
 
 ## helper method to create singular and plural file
 
+## program initialization goes here 
 singular_list = []
 plural_list = []
+diction = enchant.Dict("en_Us")
 
 def creatPluralSingularFile(word):
     if word == singularize(word):
         singular_list.append(word)
     else:
         plural_list.append(word)
+
 
 
 
@@ -56,12 +60,12 @@ while runProgram == True:
 
     for word in singular_list:
         if word == user_input:
-            print("\nWord is singular")
+            print("Word is singular\n")
             isSingular = True
             break
     else:
         foundInSingular = False
-        print("\t Word not found in sugular file")
+       # print("\t Word not found in sugular file")
 
             
 
@@ -69,17 +73,20 @@ while runProgram == True:
     for word in plural_list:
         if not isSingular:
             if word == user_input:
-                print("Word is plural")
+                print("Word is plural\n")
                 break
     else:
         foundInPlural = False
-        print("\t Word not found in plural file")
+       # print("\t Word not found in plural file")
 
 
     if not foundInSingular and  not foundInPlural:
-        print("\n\nword do not exit....")
-        print("seggestion algo goes here")
+        
+        if not diction.check(user_input):
+           print("Incorrect spelling : do you mean
+                 ->> " , diction.suggest(user_input))
+           
 
 
-print("program terminated")
+print("\n\n********* program terminated *********")
 
