@@ -1,6 +1,6 @@
 from nltk.corpus import wordnet
 
-synset = wordnet.synsets("program")
+synset = wordnet.synsets("knivess")
 print(synset)
 print("lenght of sysnset " , len(synset))
 print(synset[0].definition())

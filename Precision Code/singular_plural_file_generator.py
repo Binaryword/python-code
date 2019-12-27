@@ -1,5 +1,8 @@
 from pattern.en import singularize
 import enchant
+from nltk.corpus import WordNetLemmatizer
+
+
 
 ## creating singular and plural method
 
@@ -21,10 +24,31 @@ def creatPluralSingularFile(word):
 def spellChecker(word):
      if diction.check(word):
         print("Spelt Correctly\n")
+        return True
      else:
         print("Spelt Incorrectly")
         print("Do you mean->> " , diction.suggest(word) , "\n")
+        return False
 
+
+def wordInflationDetector():
+    print("inflection function")
+    # An helper function to detect inflection routing
+    # 1. pass user input into routing..
+    # 2. get meaning and neccessary details if singular ..
+    # 3. if plural stemmatize user input and get meaning ..
+    # 4. if incorect word check lema ..
+    # 5. if lema exit enter inflation detection ...
+    # 6. loop through each word and cut off last index [knivesss]..
+    # 7. check new list if word is correct [knives]..
+    # 8. create list of inflected words [ssn]..
+    # 9. pass user input into routing..
+    # 10. pass user input into routing..
+
+    
+def printWordSemantic():
+    print("print ... word meaning...")
+    
 
 raw_file = open("words_alpha.txt" , "r")
 
@@ -56,8 +80,9 @@ while runProgram == True:
     foundInSingular = True
     foundInPlural = True
 
-    user_input = input("Enter a word to search for :")
-
+    text = input("Enter a word to search for :")
+    user_input = text.lower()
+    
     if user_input == "_exit":
         break
 
@@ -67,7 +92,12 @@ while runProgram == True:
     for word in singular_list:
         if word == user_input:
             print("Word is singular")
-            spellChecker(user_input)
+            if spellChecker(user_input):
+                # call the helper method to display data..
+                pass
+            else:
+                # call the word inflation algorithm
+                pass
             isSingular = True
             break
     else:
@@ -81,7 +111,12 @@ while runProgram == True:
         if not isSingular:
             if word == user_input:
                 print("Word is plural")
-                spellChecker(user_input)
+                if spellChecker(user_input):
+                    # call the helper method to display data..
+                    pass
+                else:
+                    # call the word inflation algorithm
+                    pass
                 break
     else:
         foundInPlural = False
