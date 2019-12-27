@@ -18,6 +18,12 @@ def creatPluralSingularFile(word):
         plural_list.append(word)
 
 
+def spellChecker(word):
+     if diction.check(word):
+        print("Spelt Correctly\n")
+     else:
+        print("Spelt Incorrectly")
+        print("Do you mean->> " , diction.suggest(word) , "\n")
 
 
 raw_file = open("words_alpha.txt" , "r")
@@ -60,7 +66,8 @@ while runProgram == True:
 
     for word in singular_list:
         if word == user_input:
-            print("Word is singular\n")
+            print("Word is singular")
+            spellChecker(user_input)
             isSingular = True
             break
     else:
@@ -73,18 +80,21 @@ while runProgram == True:
     for word in plural_list:
         if not isSingular:
             if word == user_input:
-                print("Word is plural\n")
+                print("Word is plural")
+                spellChecker(user_input)
                 break
     else:
         foundInPlural = False
        # print("\t Word not found in plural file")
 
 
+    #second word validation
+   
+
     if not foundInSingular and  not foundInPlural:
         
         if not diction.check(user_input):
-           print("Incorrect spelling : do you mean
-                 ->> " , diction.suggest(user_input))
+           print("Incorrect spelling : do you mean->> " , diction.suggest(user_input))
            
 
 
