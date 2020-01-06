@@ -1,6 +1,6 @@
 from pattern.en import singularize
 import enchant
-from nltk.corpus import WordNetLemmatizer
+from nltk.corpus import wordnet
 
 
 
@@ -31,7 +31,7 @@ def spellChecker(word):
         return False
 
 
-def wordInflationDetector():
+def wordInflationDetector(isSinglelar , word):
     print("inflection function")
     # An helper function to detect inflection routing
     # 1. pass user input into routing..
@@ -44,6 +44,22 @@ def wordInflationDetector():
     # 8. create list of inflected words [ssn]..
     # 9. pass user input into routing..
     # 10. pass user input into routing..
+    print("is singular : " , isSingular , word)
+    syn = wordnet.synsets(word)
+    wordLenght = len(syn)
+    lemmaList = []
+    print("\n *********************Dictionary *************************\n")
+    print(f"the word {word} as {wordLenght} senses")
+    print("\n")
+    
+    if isSingular:
+        for eachWord in syn:
+            print(eachWord)
+            for lem in eachWord.lemmas():
+                print(lem.name())
+            print("\n")
+            
+        
 
     
 def printWordSemantic():
@@ -99,6 +115,7 @@ while runProgram == True:
                 # call the word inflation algorithm
                 pass
             isSingular = True
+            wordInflationDetector(True , user_input)
             break
     else:
         foundInSingular = False
@@ -117,6 +134,7 @@ while runProgram == True:
                 else:
                     # call the word inflation algorithm
                     pass
+                wordInflationDetector(False , user_input)
                 break
     else:
         foundInPlural = False
