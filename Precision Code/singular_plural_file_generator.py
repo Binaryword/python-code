@@ -30,6 +30,29 @@ def spellChecker(word):
         print("Do you mean->> " , diction.suggest(word) , "\n")
         return False
 
+def getPOS(synsetwords):
+    ## synsetword is a list[]of word comming from nltk corpus..    
+    ## adding verb and now empty list with
+    ## with other parth of speach tagin..   
+    vList = []
+    nList = []
+    oList = []
+
+    posList = [pos.pos() for pos in synsetwords]
+    for pl in posList:
+        if pl == "v":
+            vList.append(pl)
+        elif pl == "n":
+            nList.append(pl)
+        else:
+            oList.append(pl)
+
+    pos_data = [("noun" , len(nList)),
+    ("verb" , len(vList)),
+    ("others" , len(oList)) ]
+    
+    return pos_data
+
 
 def wordInflationDetector(isSinglelar , word):
     print("inflection function")
@@ -51,16 +74,19 @@ def wordInflationDetector(isSinglelar , word):
     print("\n *********************Dictionary *************************\n")
     print(f"the word {word} as {wordLenght} senses")
     print("\n")
+
+##    pos_data = getPOS(syn)
     
     if isSingular:
         for eachWord in syn:
-            print(eachWord)
+            print(eachWord.name())
+            lemmaList.clear()                
             for lem in eachWord.lemmas():
-                print(lem.name())
-            print("\n")
-            
-        
+                lemmaList.append(lem.name())
 
+            print(">>>> : " , lemmaList)
+
+            
     
 def printWordSemantic():
     print("print ... word meaning...")
