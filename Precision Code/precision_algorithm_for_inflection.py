@@ -3,7 +3,7 @@ from pattern.en import pluralize
 
 ##user_input = input("words:")
 
-user_input = "animals"
+user_input = "dogss"
 print("user input : " , user_input)
 singular = singularize(user_input)
 print("singularize:" , singular)

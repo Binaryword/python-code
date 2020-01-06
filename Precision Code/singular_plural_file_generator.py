@@ -1,4 +1,5 @@
 from pattern.en import singularize
+from pattern.en import pluralize
 import enchant
 from nltk.corpus import wordnet
 
@@ -113,7 +114,30 @@ def wordInflationDetector(isSinglelar , word):
 
 
     if not isSingular:
-        print("not singular")
+        for eachWord in syn:
+            if eachWord.pos() == "n":
+                
+                lemmaList.clear()                
+                for lem in eachWord.lemmas():
+                    lemmaList.append(pluralize(lem.name()))
+                nCounter = nCounter + 1
+                print(f" {nCounter}. {lemmaList[0]}")
+                print(">>>> : " , lemmaList)
+                print("\t Defination -- : " , eachWord.definition())
+                print("\t In Context -- : " , eachWord.examples())
+
+            elif eachWord.pos() == "v":
+                if vCounter == 0:
+                    print("\n")
+                    print(f"\t ***** As {vNum[1]} sense from {vNum[0]} SubNet ****")
+                lemmaList.clear()                
+                for lem in eachWord.lemmas():
+                    lemmaList.append(pluralize(lem.name()))
+                vCounter = vCounter + 1
+                print(f" {vCounter}. {lemmaList[0]}")
+                print(">>>> : " , lemmaList)
+                print("\t Defination -- : " , eachWord.definition())
+                print("\t In Context -- : " , eachWord.examples())
     
 def printWordSemantic():
     print("print ... word meaning...")
