@@ -28,13 +28,8 @@ def getPOS(synsetwords):
     pos_data = [("noun" , len(nList)),
     ("verb" , len(vList)),
     ("others" , len(oList)) ]
+    
     return pos_data
 
 print(getPOS(syn))
 
-for w in syn:
-    print(w.name())
-    for l in w.lemmas():
-        print(l.name())
-
-    print("\n")
