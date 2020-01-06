@@ -70,23 +70,50 @@ def wordInflationDetector(isSinglelar , word):
     print("is singular : " , isSingular , word)
     syn = wordnet.synsets(word)
     wordLenght = len(syn)
+    nCounter = 0
+    vCounter = 0 
     lemmaList = []
-    print("\n *********************Dictionary *************************\n")
-    print(f"the word {word} as {wordLenght} senses")
+
+##  pre information on word passes in
+    
+    print("\n ********************* DICTIONARY *************************\n")
+    print(f"The word {word} as {wordLenght} senses")
     print("\n")
 
-##    pos_data = getPOS(syn)
+    nNum , vNum , *oNum = getPOS(syn)
+    
+    print(f"\t ***** As {nNum[1]} sense from {nNum[0]} SubNet ****")
     
     if isSingular:
         for eachWord in syn:
-            print(eachWord.name())
-            lemmaList.clear()                
-            for lem in eachWord.lemmas():
-                lemmaList.append(lem.name())
+            if eachWord.pos() == "n":
+                
+                lemmaList.clear()                
+                for lem in eachWord.lemmas():
+                    lemmaList.append(lem.name())
+                nCounter = nCounter + 1
+                print(f" {nCounter}. {lemmaList[0]}")
+                print(">>>> : " , lemmaList)
+                print("\t Defination -- : " , eachWord.definition())
+                print("\t In Context -- : " , eachWord.examples())
 
-            print(">>>> : " , lemmaList)
-
+            elif eachWord.pos() == "v":
+                if vCounter == 0:
+                    print("\n")
+                    print(f"\t ***** As {vNum[1]} sense from {vNum[0]} SubNet ****")
+                lemmaList.clear()                
+                for lem in eachWord.lemmas():
+                    lemmaList.append(lem.name())
+                vCounter = vCounter + 1
+                print(f" {vCounter}. {lemmaList[0]}")
+                print(">>>> : " , lemmaList)
+                print("\t Defination -- : " , eachWord.definition())
+                print("\t In Context -- : " , eachWord.examples())
             
+
+
+    if not isSingular:
+        print("not singular")
     
 def printWordSemantic():
     print("print ... word meaning...")
