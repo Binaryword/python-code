@@ -138,6 +138,8 @@ def wordInflationDetector(isSinglelar , word):
                 print(">>>> : " , lemmaList)
                 print("\t Defination -- : " , eachWord.definition())
                 print("\t In Context -- : " , eachWord.examples())
+
+
     
 def printWordSemantic():
     print("print ... word meaning...")
