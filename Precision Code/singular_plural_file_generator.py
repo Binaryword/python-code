@@ -140,6 +140,45 @@ def wordInflationDetector(isSinglelar , word):
                 print("\t In Context -- : " , eachWord.examples())
 
 
+def idenfityInflation(word , suggest):
+    w_found = False
+    l_word = list(word)
+
+    for s in suggest:
+        s_word = list(s)
+
+        if l_word == []:
+            print("Could not found possible inflection word")
+            break
+
+        if l_word == s_word:
+            print("found")
+            print(f"you inflate ... : {s}")
+
+            infl = ""
+            for i in inflate_letter:
+                infl+i
+
+            print(inflate_letter)
+            print(f"word is inflate with {infl}")
+            break
+        else:
+            print("false")
+
+    else:
+         print("word reduce [-1]")
+         inf = l_word.pop()
+         print(inf)
+         print(l_word)
+         inflate_letter.append(inf)
+         idenfityInflation(l_word , suggest)
+
+    
+                       
+                
+    
+    
+
     
 def printWordSemantic():
     print("print ... word meaning...")
@@ -192,6 +231,9 @@ while runProgram == True:
                 pass
             else:
                 # call the word inflation algorithm
+                suggest = diction.suggest(user_input)
+                inflate_letter = []
+                idenfityInflation(user_input , suggest)
                 pass
             isSingular = True
             wordInflationDetector(True , user_input)
@@ -226,7 +268,10 @@ while runProgram == True:
     if not foundInSingular and  not foundInPlural:
         
         if not diction.check(user_input):
-           print("Incorrect spelling : do you mean->> " , diction.suggest(user_input))
+            suggest = diction.suggest(user_input)
+            print("Incorrect spelling : do you mean->> " , suggest )
+            inflate_letter = []
+            idenfityInflation(user_input, suggest)
            
 
 
