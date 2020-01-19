@@ -143,7 +143,7 @@ def wordInflationDetector(isSinglelar , word):
 def idenfityInflation(word , suggest):
     w_found = False
     l_word = list(word)
-
+     
     for s in suggest:
         s_word = list(s)
 
@@ -155,7 +155,7 @@ def idenfityInflation(word , suggest):
             print("found")
             print(f"you inflate ... : {s}")
 
-            infl = ""
+           
             for i in inflate_letter:
                 infl+i
 
@@ -233,6 +233,7 @@ while runProgram == True:
                 # call the word inflation algorithm
                 suggest = diction.suggest(user_input)
                 inflate_letter = []
+                infl = ""
                 idenfityInflation(user_input , suggest)
                 pass
             isSingular = True
@@ -271,6 +272,7 @@ while runProgram == True:
             suggest = diction.suggest(user_input)
             print("Incorrect spelling : do you mean->> " , suggest )
             inflate_letter = []
+            infl = ""
             idenfityInflation(user_input, suggest)
            
 
