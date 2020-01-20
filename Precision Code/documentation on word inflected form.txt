@@ -3,3 +3,9 @@ algorithm for word inflected form of wordnet
 step involoved
 
 step 1 : import list of english words 
+step 2 : initailize list of all inglish words
+step 4 : intialize singular and plural list [data structure]
+step 5 : input word
+step 6 : if word is not == _exit
+step 7 : check singular list
+step 8 : print word is singular
