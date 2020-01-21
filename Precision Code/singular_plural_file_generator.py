@@ -55,7 +55,7 @@ def getPOS(synsetwords):
     return pos_data
 
 
-def wordInflationDetector(isSinglelar , word):
+def showUserInputMeaning(isSinglelar , word):
     print("inflection function")
     # An helper function to detect inflection routing
     # 1. pass user input into routing..
@@ -237,7 +237,7 @@ while runProgram == True:
                 idenfityInflation(user_input , suggest)
                 pass
             isSingular = True
-            wordInflationDetector(True , user_input)
+            showUserInputMeaning(True , user_input)
             break
     else:
         foundInSingular = False
@@ -256,7 +256,7 @@ while runProgram == True:
                 else:
                     # call the word inflation algorithm
                     pass
-                wordInflationDetector(False , user_input)
+                showUserInputMeaning(False , user_input)
                 break
     else:
         foundInPlural = False
