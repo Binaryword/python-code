@@ -46,5 +46,19 @@ print()
 # METHOD TWO OF IMPORTING DATA
 
 dataset  = pd.read_csv("SMSSpamCollection" , sep="\t" , header=None)
-print(dataset)
+print(dataset.head())
+
+
+
+print()
+print("############## NEW DATA ##############")
+print("##################################")
+print()
+
+##  EXPLORING THE DATASET......
+
+dataset.columns = ["Label" , "SMS"]
+print(dataset.head())
+
+print(f"data set contain {len(dataset)} row ... {len(dataset.columns)} colums")
 
