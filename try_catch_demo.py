@@ -8,4 +8,9 @@ except Exception as ex:
     print(type(ex))
 else:
     print("not exception was thrown")
-    
+finally:
+    print("run if exception or not")
+
+
+ 
+
