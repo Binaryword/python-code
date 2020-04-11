@@ -176,39 +176,85 @@ dat = pd.DataFrame(X.toarray() , columns=cv.get_feature_names())
 print(dat.head())
 
 
-
+def doc_preprocessing(text):
+    dat = "".join([word for word in text if word not in string.punctuation])
+    tok_word = word_tokenize(dat)
+    lem = [lemma.lemmatize(x) for x in tok_word if x not in st]
+    return lem
 
 
 
 print()
 print("############## NEW DATA ##############")
-print("##################################")
+print("#################   COUNT VECTORIZATION TECHNIQES #################")
 print() 
-
+ 
 ##  Vectorization 
 
 from sklearn.feature_extraction.text import CountVectorizer
 
-cv = CountVectorizer()
+cv1 = CountVectorizer(analyzer=doc_preprocessing)
 
-corpus = ["this is a sentence is" ,
-          "this is another sentence" ,
-          "third document is here"]
+data_samp = dataset["SMS"]
 
+x = cv1.fit_transform(data_samp[0:10])
+print(x.shape)
+print(cv1.get_feature_names())
 
-X = cv.fit(corpus)
-print(cv.get_feature_names())
-print(X.vocabulary_)
-
-
-X = cv.transform(corpus)
-print(X.shape)
-print(X.toarray())
-
-dat = pd.DataFrame(X.toarray() , columns=cv.get_feature_names())
-print(dat.head())
+dframe = pd.DataFrame(x.toarray() , columns=cv1.get_feature_names())
+print(dframe.head(10))
 
 
+
+def doc_preprocessing_ngram(text):
+    dat = "".join([word for word in text if word not in string.punctuation])
+    tok_word = word_tokenize(dat)
+    lem = " ".join([lemma.lemmatize(x) for x in tok_word if x not in st])
+    return lem
+
+dataset["preprocess_data"] = dataset["SMS"].apply(lambda x: doc_preprocessing_ngram(x))
+
+print()
+print("############## NEW DATA ##############")
+print("################# N-GRAM VECTORIZATION   #################")
+print() 
+ 
+##  Vectorization 
+
+from sklearn.feature_extraction.text import CountVectorizer
+
+cv1 = CountVectorizer(ngram_range=(2,2))
+
+data_samp = dataset["preprocess_data"]
+
+x = cv1.fit_transform(data_samp[0:10])
+print(x.shape)
+print(cv1.get_feature_names())
+
+dframe = pd.DataFrame(x.toarray() , columns=cv1.get_feature_names())
+print(dframe.head(10))
+
+
+
+print()
+print("############## NEW DATA ##############")
+print("################# TF-IDF VECTORIZATION   #################")
+print() 
+ 
+##  Vectorization 
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+cv1 = TfidfVectorizer(analyzer=doc_preprocessing)
+
+data_samp = dataset["SMS"]
+
+x = cv1.fit_transform(data_samp[0:10])
+print(x.shape)
+print(cv1.get_feature_names())
+
+dframe = pd.DataFrame(x.toarray() , columns=cv1.get_feature_names())
+print(dframe.head(10))
 
 
 
