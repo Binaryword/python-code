@@ -18,12 +18,13 @@ step 12: identify Inflation
 			if Found in plural list
 step 13: same as step 8 - 12
 			if Not Found in both singular and plural list
-				if NOT user_input not spelt correctly
+				if user_input not spelt correctly
 step 14: initialize posible suggestion word 
 step 15: print suggested words
 step 16: identify Inflation
 
-	Algorithm for word inflation identifier
+	Algorithm for word inflation identifion
+	
 	Example word = shool
 
 step 1: initialize list of 
@@ -33,19 +34,25 @@ step 1: initialize list of
 			LOOP START
 step 2: loop through list of suggested words
 step 3: convert each word in suggested wordsList to a list e.g ['s','h','o','o','l']
-			if inflated  wordList is empty
-step 4: print could not found possible inflation
-step 5: break out of the loop
-			if inflated list == list of a suggested word e.g ['s','h','o','o'] = ['s','h','o','o']
-step 6: print found and the inflated word
-step 7: break out of the loop
-			if inflated list != list of a suggested word e.g ['s','h','o','o'] = ['s','h','o','o','l']
-step 8: print No match found yet
+step 4: 	if inflated  wordList is empty
+				print could not found possible inflation
+					break out of the loop
+step 5:		if inflated list == list of a suggested word e.g ['s','h','o','o'] = ['s','h','o','o']
+				print found and the inflated word
+					break out of the loop
+step 6:		if inflated list != list of a suggested word e.g ['s','h','o','o'] = ['s','h','o','o','l']	
+				print No match found yet
+step 7:				REPEAT STEP 2 TO 6(by picking next suggested word) 
+
 			LOOP ENDS
 			
 			if LOOP ENDS successfull without BREAK
 step  9: remove last index of inflected_word (inflected_word.pop())
-step 10: repeat the process again without the new inflected_word list 
+step 10: repeat STEP 1 TO 8 process again with the new inflected_word list ()
+step 11     if found 
+				print dictionary meanining 
+			esle 
+				print Not found.(Meaning word is totally meaningless)
 
 
 
