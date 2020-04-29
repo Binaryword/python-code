@@ -7,10 +7,11 @@ print(ont.Climate)
 ont_class = ont.classes()
 ont_Oproperty = ont.object_properties()
 ##print(list(ont_class))
-
+print(ont.base_iri)
 i = 0
 
-print("THE CLASSES IN THE ONTOLOGY)
+print("THE CLASSES IN THE ONTOLOGY")
+      
 for cla in list(ont_class):
     i=i+1
     print(f"{i} >> {cla}")
