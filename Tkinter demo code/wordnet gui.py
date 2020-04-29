@@ -12,7 +12,7 @@ frame2 = tk.LabelFrame(root , text="" , padx=0 ,pady=0)
 
 
 def show(event=None):
-    print("this is cool")
+    print(f"hello {user_entry.get()}")
    
 
 ## the first frame data...... 
