@@ -1,4 +1,4 @@
-from owlready2 import *
+ from owlready2 import *
 
 ontology = get_ontology("newMaizeOntology.owl")
 ont = ontology.load()
